@@ -1,0 +1,19 @@
+import { Router } from "express";
+import { verifyToken } from "../middleware/auth.middleware.js";
+import {
+  destroy,
+  index,
+  show,
+  store,
+  update,
+} from "../controllers/products.controller.js";
+
+const router = Router();
+
+router.get("/", [verifyToken], index);
+router.post("/store", [verifyToken], store);
+router.get("/show/:id", [verifyToken], show);
+router.put("/update/:id", [verifyToken], update);
+router.delete("/delete/:id", [verifyToken], destroy);
+
+export default router;

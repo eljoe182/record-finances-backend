@@ -1,0 +1,40 @@
+@url = http://localhost:4000/api/v1/purchase
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyOGMyNmE3MTUzMjdkZDY4MTc5NGEyZSIsImVtYWlsIjoiYXNkQGFzZC5jb20iLCJ1c2VybmFtZSI6ImVsam9lMTgyIiwiaWF0IjoxNjUzMzUyMzQ5LCJleHAiOjE2NTM0Mzg3NDl9.74J6QFgnZGZY_o3eJIzsWURhu7RDAYZzJwqZzeJc-Bs
+
+###
+GET {{url}} HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+###
+POST {{url}}/store HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "commerce": "628c353c5cc0fbaed669d320",
+  "wallet": "628c3514663f518027d25cec",
+  "description": "Mi primera compra",
+  "dateInvoice": "2018-12-12",
+  "subTotal": 1000,
+  "tax": 10,
+  "total": 1010,
+  "items": [
+    {
+      "productId": "628c3a15e348fa0b73c0dbda",
+      "quantity": 1,
+      "price": 500,
+      "tax": 0,
+      "discount": 0,
+      "total": 500
+    },
+    {
+      "productId": "628c3a15e348fa0b73c0dbda",
+      "quantity": 1,
+      "price": 500,
+      "tax": 10,
+      "discount": 0,
+      "total": 510
+    }
+  ]
+}

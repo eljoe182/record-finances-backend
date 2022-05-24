@@ -1,0 +1,38 @@
+@url = http://localhost:4000/api/v1/products
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyOGMyNmE3MTUzMjdkZDY4MTc5NGEyZSIsImVtYWlsIjoiYXNkQGFzZC5jb20iLCJ1c2VybmFtZSI6ImVsam9lMTgyIiwiaWF0IjoxNjUzMzUyMzQ5LCJleHAiOjE2NTM0Mzg3NDl9.74J6QFgnZGZY_o3eJIzsWURhu7RDAYZzJwqZzeJc-Bs
+
+###
+GET {{url}} HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+###
+POST {{url}}/store HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "description": "Product one"
+}
+
+###
+@id = 628c38c88dff7ba3cf4662f2
+GET {{url}}/show/{{id}} HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+###
+@id = 628c3a965cc0fbaed66aac0a
+PUT {{url}}/update/{{id}} HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "description": "Product 2"
+}
+
+###
+@id = 628c3a965cc0fbaed66aac0a
+DELETE {{url}}/delete/{{id}} HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer {{token}}

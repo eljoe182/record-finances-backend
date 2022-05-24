@@ -1,0 +1,71 @@
+@url = http://localhost:4000/api/v1/auth
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyOGMyNmE3MTUzMjdkZDY4MTc5NGEyZSIsImVtYWlsIjoiYXNkQGFzZC5jb20iLCJ1c2VybmFtZSI6ImVsam9lMTgyIiwiaWF0IjoxNjUzMzUyMzQ5LCJleHAiOjE2NTM0Mzg3NDl9.74J6QFgnZGZY_o3eJIzsWURhu7RDAYZzJwqZzeJc-Bs
+
+###
+POST {{url}}/signup HTTP/1.1
+Content-Type: application/json
+
+{
+  "username": "eljoe182",
+  "email": "asd@asd.com",
+  "password": "asd"
+}
+
+###
+POST {{url}}/login HTTP/1.1
+Content-Type: application/json
+
+{
+  "email": "asd@asd.com",
+  "password": "asd"
+}
+
+###
+POST {{url}}/forgot_password HTTP/1.1
+Content-Type: application/json
+
+{
+  "email": "asd@asd.com"
+}
+
+###
+@tokenReset = y480q2jtx6lsdm0vdh0x9
+GET {{url}}/reset_password/{{tokenReset}} HTTP/1.1
+Content-Type: application/json
+
+###
+@tokenNewPass = y480q2jtx6lsdm0vdh0x9
+POST {{url}}/reset_password/{{tokenNewPass}} HTTP/1.1
+Content-Type: application/json
+
+{
+  "password": "asd123"
+}
+
+###
+GET {{url}} HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+###
+@id = 62854cff184816dc42cd26bf
+PUT {{url}}/update/{{id}} HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "name": "Joe mod",
+  "email": "asd@asd.com",
+  "phone": "1234567890"
+}
+
+###
+@id = 62854cff184816dc42cd26bf
+POST {{url}}/change_password HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "password": "asd",
+  "newPassword": "asd123"
+}
