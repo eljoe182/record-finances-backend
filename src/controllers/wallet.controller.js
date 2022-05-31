@@ -1,7 +1,9 @@
 import { WalletModel } from "../models/index.js";
 
 export const index = async (req, res) => {
-  const wallets = await WalletModel.find();
+  const wallets = await WalletModel.find().select(
+    "-__v -createdAt -updatedAt -userId"
+  );
   res.json({
     message: "Wallets fetched successfully!",
     resources: null,
@@ -32,7 +34,14 @@ export const store = async (req, res) => {
   try {
     const { description, balance } = req.body;
     const { _id: userId } = req.user;
-    const wallet = await WalletModel.create({ description, balance, userId });
+    const wallet = await WalletModel.create({
+      description,
+      balance,
+      userId,
+    }).then((wallet) => {
+      const { _id, description, balance } = wallet;
+      return { _id, description, balance };
+    });
 
     res.json({
       message: "Wallet created successfully!",
@@ -64,7 +73,7 @@ export const update = async (req, res) => {
     {
       new: true,
     }
-  );
+  ).select("-__v -createdAt -updatedAt -userId");
 
   if (!wallet) {
     res.status(404).json({
@@ -87,7 +96,7 @@ export const destroy = async (req, res) => {
   const wallet = await WalletModel.findByIdAndDelete({
     _id: id,
     userId,
-  });
+  }).select("-__v -createdAt -updatedAt -userId");
 
   if (!wallet) {
     res.status(404).json({
