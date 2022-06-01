@@ -70,3 +70,13 @@ export const destroy = async (req, res) => {
     data: product,
   });
 };
+
+export const findByDescription = async (req, res) => {
+  const { query } = req.params;
+  const product = await ProductsModel.find({
+    description: {
+      $regex: query,
+    },
+  });
+  res.json(product);
+};

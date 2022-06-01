@@ -1,7 +1,9 @@
 import { CommerceModel } from "../models/index.js";
 
 export const index = async (req, res) => {
-  const commerce = await CommerceModel.find();
+  const commerce = await CommerceModel.find().select(
+    "-__v -_id -createdAt -updatedAt"
+  );
   res.json({
     message: "Commerce list",
     resources: null,
@@ -93,6 +95,27 @@ export const destroy = async (req, res) => {
       resources: null,
       data: commerce,
     });
+  } catch (error) {
+    res.status(500).json({
+      message: error.message,
+      resource: null,
+      data: null,
+    });
+  }
+};
+
+export const findByDescription = async (req, res) => {
+  try {
+    const { query } = req.params;
+    const commerce = await CommerceModel.find({
+      description: {
+        $regex: query,
+        $options: "imsx",
+      },
+    })
+      .select("-__v -createdAt -updatedAt")
+      .lean();
+    res.json(commerce);
   } catch (error) {
     res.status(500).json({
       message: error.message,
