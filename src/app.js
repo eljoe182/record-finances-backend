@@ -1,5 +1,6 @@
 import express from "express";
 import cors from "cors";
+import morgan from "morgan";
 import { config } from "dotenv";
 import routes from "./routes/index.js";
 import database from "./config/db.js";
@@ -30,6 +31,7 @@ const app = express();
 
 app.use(cors(corsOptionsDelegate));
 app.use(express.json());
+app.use(morgan("dev"));
 
 app.use("/api/v1", routes);
 
