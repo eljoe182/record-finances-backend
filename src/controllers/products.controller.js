@@ -72,11 +72,22 @@ export const destroy = async (req, res) => {
 };
 
 export const findByDescription = async (req, res) => {
-  const { query } = req.params;
-  const product = await ProductsModel.find({
-    description: {
-      $regex: query,
-    },
-  });
-  res.json(product);
+  try {
+    const { query } = req.params;
+    const products = await ProductsModel.find({
+      description: {
+        $regex: query,
+        $options: "imsx",
+      },
+    })
+      .select("-__v -createdAt -updatedAt")
+      .lean();
+    res.json(products);
+  } catch (error) {
+    res.status(500).json({
+      message: error.message,
+      resource: null,
+      data: null,
+    });
+  }
 };

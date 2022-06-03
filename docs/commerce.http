@@ -1,5 +1,5 @@
 @url = http://localhost:4000/api/v1/commerce
-@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyOGMyNmE3MTUzMjdkZDY4MTc5NGEyZSIsImVtYWlsIjoiYXNkQGFzZC5jb20iLCJ1c2VybmFtZSI6ImVsam9lMTgyIiwiaWF0IjoxNjU0MDM2MjQ1LCJleHAiOjE2NTQxMjI2NDV9.6McSZbpkeiADaKQM-JA7ekVykdBy6Ix2DFllkBpqkuc
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyOGMyNmE3MTUzMjdkZDY4MTc5NGEyZSIsImVtYWlsIjoiYXNkQGFzZC5jb20iLCJ1c2VybmFtZSI6ImVsam9lMTgyIiwiaWF0IjoxNjU0MjE3NjgyLCJleHAiOjE2NTQzMDQwODJ9.CnxvmgwBWXQXB4vN0k2dQUnV2IUrODJ1yh-g_aplieo
 
 ###
 GET {{url}} HTTP/1.1
@@ -12,7 +12,7 @@ Content-Type: application/json
 Authorization: Bearer {{token}}
 
 {
-  "description": "Panaderia y Pasteleria"
+  "description": "LIDER"
 }
 
 ###

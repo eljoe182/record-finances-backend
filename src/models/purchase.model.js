@@ -5,14 +5,17 @@ const PurchaseSchema = mongoose.Schema(
     userId: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "user",
+      require: true,
     },
     commerceId: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "commerce",
+      require: true,
     },
     walletId: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "wallet",
+      require: true,
     },
     description: {
       type: mongoose.Schema.Types.String,
@@ -25,14 +28,27 @@ const PurchaseSchema = mongoose.Schema(
     subTotal: {
       type: mongoose.Schema.Types.Number,
       require: true,
+      default: 0,
+    },
+    discount: {
+      type: mongoose.Schema.Types.Number,
+      require: true,
+      default: 0,
     },
     tax: {
       type: mongoose.Schema.Types.Number,
       require: true,
+      default: 0,
+    },
+    net: {
+      type: mongoose.Schema.Types.Number,
+      require: true,
+      default: 0,
     },
     total: {
       type: mongoose.Schema.Types.Number,
       require: true,
+      default: 0,
     },
     items: {
       type: [
@@ -40,18 +56,16 @@ const PurchaseSchema = mongoose.Schema(
           productId: {
             type: mongoose.Schema.Types.ObjectId,
             ref: "products",
+            require: true,
           },
           quantity: {
             type: mongoose.Schema.Types.Number,
             require: true,
+            default: 0,
           },
           price: {
             type: mongoose.Schema.Types.Number,
             require: true,
-          },
-          tax: {
-            type: mongoose.Schema.Types.Number,
-            require: false,
             default: 0,
           },
           discount: {
@@ -62,6 +76,7 @@ const PurchaseSchema = mongoose.Schema(
           total: {
             type: mongoose.Schema.Types.Number,
             require: true,
+            default: 0,
           },
         },
       ],
