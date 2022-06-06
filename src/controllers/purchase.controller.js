@@ -6,7 +6,11 @@ export const index = async (req, res) => {
   const { _id: userId } = req.user;
   const purchases = await PurchaseModel.find({
     userId,
-  });
+  })
+    .select("-__v -createdAt -updatedAt")
+    .populate("commerceId", "-__v -createdAt -updatedAt")
+    .populate("items.productId", "-__v -createdAt -updatedAt")
+    .populate("walletId", "-__v -createdAt -updatedAt");
   res.json({
     message: "Purchases list",
     resources: null,
