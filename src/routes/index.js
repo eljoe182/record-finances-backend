@@ -5,6 +5,7 @@ import auth from "./auth.routes.js";
 import wallet from "./wallet.routes.js";
 import commerce from "./commerce.routes.js";
 import products from "./products.routes.js";
+import profile from "./user.routes.js";
 
 const router = Router();
 
@@ -14,5 +15,6 @@ router.use("/sales", sales);
 router.use("/wallet", wallet);
 router.use("/commerce", commerce);
 router.use("/products", products);
+router.use("/profile", profile);
 
 export default router;

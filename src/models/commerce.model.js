@@ -13,4 +13,6 @@ const CommerceSchema = mongoose.Schema(
   }
 );
 
+CommerceSchema.index({ description: "text" });
+
 export default mongoose.model("commerce", CommerceSchema, "commerce");

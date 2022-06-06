@@ -6,6 +6,7 @@ import {
   show,
   store,
   update,
+  findByDescription,
 } from "../controllers/products.controller.js";
 
 const router = Router();
@@ -15,5 +16,6 @@ router.post("/store", [verifyToken], store);
 router.get("/show/:id", [verifyToken], show);
 router.put("/update/:id", [verifyToken], update);
 router.delete("/delete/:id", [verifyToken], destroy);
+router.get("/find/:query", [verifyToken], findByDescription);
 
 export default router;
