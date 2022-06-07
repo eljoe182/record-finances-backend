@@ -47,8 +47,6 @@ export const update = async (req, res) => {
   const { id } = req.params;
   const { description } = req.body;
 
-  console.log(req.params);
-
   const product = await ProductsModel.findByIdAndUpdate(
     { _id: id },
     { description },

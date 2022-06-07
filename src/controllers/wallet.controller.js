@@ -1,3 +1,4 @@
+import { addMovement } from "../helpers/movements.helper.js";
 import { WalletModel } from "../models/index.js";
 
 export const index = async (req, res) => {
@@ -110,5 +111,33 @@ export const destroy = async (req, res) => {
     message: "Wallet deleted successfully!",
     resources: null,
     data: wallet,
+  });
+};
+
+export const addBalance = async (req, res) => {
+  const { _id: userId } = req.user;
+  const { wallet, amount } = req.body;
+
+  const walletToUpdate = await WalletModel.findOne({
+    _id: wallet,
+    userId,
+  }).select("-__v -createdAt -updatedAt -userId");
+
+  walletToUpdate.balance += amount;
+
+  await walletToUpdate.save();
+
+  await addMovement({
+    wallet: walletToUpdate._id,
+    type: "credit",
+    amount,
+    origin: "addBalance",
+    originId: walletToUpdate._id,
+  });
+
+  res.json({
+    message: "Wallet updated successfully!",
+    resources: null,
+    data: walletToUpdate,
   });
 };
