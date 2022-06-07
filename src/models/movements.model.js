@@ -2,20 +2,20 @@ import mongoose from "mongoose";
 
 const MovementsSchema = mongoose.Schema(
   {
-    description: {
-      type: mongoose.Schema.Types.String,
-      trim: true,
+    wallet: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "wallet",
       require: true,
     },
-    dateOperation: {
-      type: mongoose.Schema.Types.Date,
-      require: true,
-    },
-    document: {
+    type: {
       type: mongoose.Schema.Types.String,
       trim: true,
     },
-    typeDocument: {
+    origin: {
+      type: mongoose.Schema.Types.String,
+      trim: true,
+    },
+    originId: {
       type: mongoose.Schema.Types.String,
       trim: true,
     },

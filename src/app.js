@@ -14,7 +14,7 @@ database();
 const allowlist = [
   "http://*.heroku.com",
   "https://*.heroku.com",
-  "http://localhost:4000",
+  "http://192.168.1.90:8000",
   process.env.CLIENT_URL,
 ];
 const corsOptionsDelegate = function (req, callback) {

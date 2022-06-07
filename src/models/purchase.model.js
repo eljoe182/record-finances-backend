@@ -17,6 +17,10 @@ const PurchaseSchema = mongoose.Schema(
       ref: "wallet",
       require: true,
     },
+    movementId: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "movements",
+    },
     description: {
       type: mongoose.Schema.Types.String,
       trim: true,

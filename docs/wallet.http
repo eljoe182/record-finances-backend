@@ -1,5 +1,5 @@
 @url = http://localhost:4000/api/v1/wallet
-@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyOGMyNmE3MTUzMjdkZDY4MTc5NGEyZSIsImVtYWlsIjoiYXNkQGFzZC5jb20iLCJ1c2VybmFtZSI6ImVsam9lMTgyIiwiaWF0IjoxNjUzMzUyMzQ5LCJleHAiOjE2NTM0Mzg3NDl9.74J6QFgnZGZY_o3eJIzsWURhu7RDAYZzJwqZzeJc-Bs
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyOGMyNmE3MTUzMjdkZDY4MTc5NGEyZSIsImVtYWlsIjoiYXNkQGFzZC5jb20iLCJ1c2VybmFtZSI6ImVsam9lMTgyIiwiaWF0IjoxNjU0NTM5NzE4LCJleHAiOjE2NTQ2MjYxMTh9.3MhoIZPFW5UtGofabd-MBI6FCWEIGPBKx_cq9_K2d-8
 
 ###
 GET {{url}} HTTP/1.1
@@ -37,3 +37,13 @@ Authorization: Bearer {{token}}
 DELETE {{url}}/delete/{{id}} HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer {{token}}
+
+###
+POST {{url}}/add-balance HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "wallet": "629e55baea628785d2313f5f",
+  "amount": 1000
+}

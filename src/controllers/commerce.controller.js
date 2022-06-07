@@ -13,7 +13,6 @@ export const index = async (req, res) => {
 
 export const store = async (req, res) => {
   try {
-    console.log(req.body);
     const { description } = req.body;
     const commerce = await CommerceModel.findOneAndUpdate(
       {
