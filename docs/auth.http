@@ -17,11 +17,11 @@ Content-Type: application/json
 
 {
   "email": "asd@asd.com",
-  "password": "asd"
+  "password": "asd123"
 }
 
 ###
-POST {{url}}/forgot_password HTTP/1.1
+POST {{url}}/forgot-password HTTP/1.1
 Content-Type: application/json
 
 {
@@ -29,16 +29,11 @@ Content-Type: application/json
 }
 
 ###
-@tokenReset = y480q2jtx6lsdm0vdh0x9
-GET {{url}}/reset_password/{{tokenReset}} HTTP/1.1
-Content-Type: application/json
-
-###
-@tokenNewPass = y480q2jtx6lsdm0vdh0x9
-POST {{url}}/reset_password/{{tokenNewPass}} HTTP/1.1
+POST {{url}}/reset-password HTTP/1.1
 Content-Type: application/json
 
 {
+  "token": "okjt0kyiw4d02d6a0sk4azf",
   "password": "asd123"
 }
 
