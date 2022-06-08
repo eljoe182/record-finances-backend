@@ -13,3 +13,20 @@ export function encryptPassword(next) {
     next();
   }
 }
+
+export function encryptPasswordUpdateOne(next) {
+  const password = this.getUpdate().password;
+  if (!password) {
+    return next();
+  }
+  try {
+    bcrypt.genSalt(10, (err, salt) => {
+      bcrypt.hash(password, salt, (err, hash) => {
+        this.getUpdate().password = hash;
+        next();
+      });
+    });
+  } catch (error) {
+    return next(error);
+  }
+}

@@ -1,6 +1,9 @@
 import mongoose from "mongoose";
 import { comparePassword } from "./methods/user.methods.model.js";
-import { encryptPassword } from "./middleware/user.middleware.model.js";
+import {
+  encryptPassword,
+  encryptPasswordUpdateOne,
+} from "./middleware/user.middleware.model.js";
 
 const UserSchema = mongoose.Schema(
   {
@@ -8,6 +11,7 @@ const UserSchema = mongoose.Schema(
       type: mongoose.Schema.Types.String,
       trim: true,
       require: true,
+      unique: true,
     },
     password: {
       type: mongoose.Schema.Types.String,
@@ -18,10 +22,18 @@ const UserSchema = mongoose.Schema(
       type: mongoose.Schema.Types.String,
       trim: true,
       require: true,
+      unique: true,
     },
     active: {
       type: mongoose.Schema.Types.Boolean,
       default: true,
+    },
+    resetPasswordToken: {
+      type: mongoose.Schema.Types.String,
+      trim: true,
+    },
+    resetPasswordExpires: {
+      type: mongoose.Schema.Types.Date,
     },
   },
   {
@@ -29,7 +41,10 @@ const UserSchema = mongoose.Schema(
   }
 );
 
+UserSchema.index({ username: 1, email: 1 }, { unique: true });
+
 UserSchema.pre("save", encryptPassword);
+UserSchema.pre("updateOne", encryptPasswordUpdateOne);
 
 UserSchema.methods.comparePassword = comparePassword;
 
