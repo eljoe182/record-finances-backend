@@ -2,25 +2,43 @@
   "name": "record-finances-backend",
   "version": "1.0.0",
   "description": "",
-  "type": "module",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon index.js",
-    "start": "node index.js"
+    "dev": "ts-node-dev --respawn src/index.ts",
+    "prod": "npm run build && npm run start",
+    "start": "node -r tsconfig-paths/register -r ts-node/register ./dist/index.js",
+    "eslint": "eslint '*/**/*.{js,ts}' --fix --max-warnings=0 --no-error-on-unmatched-pattern"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "bcrypt": "5.0.1",
+    "@typegoose/typegoose": "^9.12.1",
+    "bcrypt": "5.1.0",
     "cors": "2.8.5",
-    "dotenv": "16.0.1",
-    "express": "4.18.1",
+    "dotenv": "16.0.3",
+    "express": "4.18.2",
     "jsonwebtoken": "8.5.1",
-    "mongoose": "6.3.4",
+    "mongoose": "6.7.2",
     "morgan": "1.10.0",
-    "nodemailer": "^6.7.5"
+    "nodemailer": "^6.8.0"
   },
   "devDependencies": {
-    "nodemon": "2.0.16"
+    "@types/bcrypt": "^5.0.0",
+    "@types/cors": "^2.8.12",
+    "@types/express": "^4.17.14",
+    "@types/jsonwebtoken": "^8.5.9",
+    "@types/morgan": "^1.9.3",
+    "@types/node": "^18.11.9",
+    "@types/nodemailer": "^6.4.6",
+    "@typescript-eslint/eslint-plugin": "^5.43.0",
+    "eslint": "^8.28.0",
+    "eslint-config-standard-with-typescript": "^23.0.0",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-n": "^15.5.1",
+    "eslint-plugin-promise": "^6.1.1",
+    "nodemon": "2.0.20",
+    "ts-node": "^10.9.1",
+    "ts-node-dev": "^2.0.0",
+    "typescript": "^4.9.3"
   }
 }
