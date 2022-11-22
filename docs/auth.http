@@ -1,4 +1,4 @@
-@url = http://localhost:4000/api/v1/auth
+@url = http://localhost:8080/api/v1/auth
 @token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyOGMyNmE3MTUzMjdkZDY4MTc5NGEyZSIsImVtYWlsIjoiYXNkQGFzZC5jb20iLCJ1c2VybmFtZSI6ImVsam9lMTgyIiwiaWF0IjoxNjUzMzUyMzQ5LCJleHAiOjE2NTM0Mzg3NDl9.74J6QFgnZGZY_o3eJIzsWURhu7RDAYZzJwqZzeJc-Bs
 
 ###
