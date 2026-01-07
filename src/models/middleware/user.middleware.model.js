@@ -1,32 +1,25 @@
 import bcrypt from "bcrypt";
 
-export function encryptPassword(next) {
+export async function encryptPassword() {
   const user = this;
   if (user.isModified("password")) {
-    bcrypt.genSalt(10, (err, salt) => {
-      bcrypt.hash(user.password, salt, (err, hash) => {
-        user.password = hash;
-        next();
-      });
-    });
-  } else {
-    next();
+    const salt = await bcrypt.genSalt(10);
+    const hash = await bcrypt.hash(user.password, salt);
+    user.password = hash;
+    console.log({ user });
   }
 }
 
-export function encryptPasswordUpdateOne(next) {
+export async function encryptPasswordUpdateOne() {
   const password = this.getUpdate().password;
   if (!password) {
-    return next();
+    return;
   }
   try {
-    bcrypt.genSalt(10, (err, salt) => {
-      bcrypt.hash(password, salt, (err, hash) => {
-        this.getUpdate().password = hash;
-        next();
-      });
-    });
+    const salt = await bcrypt.genSalt(10);
+    const hash = await bcrypt.hash(password, salt);
+    this.getUpdate().password = hash;
   } catch (error) {
-    return next(error);
+    throw new Error("Error encrypting password");
   }
 }
